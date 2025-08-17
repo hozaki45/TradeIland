@@ -2,9 +2,9 @@
 
 # ターゲットサイト設定
 target_site:
-  base_url: ""  # ターゲットサイトのベースURL
-  login_url: ""  # ログインページURL
-  data_url: ""   # データ取得ページURL
+  base_url: "https://www.trade-island.jp"  # ターゲットサイトのベースURL
+  login_url: "https://www.trade-island.jp/login"  # ログインページURL
+  data_url: "https://www.trade-island.jp/data"   # データ取得ページURL
   
 # 認証設定（環境変数で上書き可能）
 auth:
