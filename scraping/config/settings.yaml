@@ -1,0 +1,69 @@
+# TradeIland スクレイピング設定ファイル
+
+# ターゲットサイト設定
+target_site:
+  base_url: ""  # ターゲットサイトのベースURL
+  login_url: ""  # ログインページURL
+  data_url: ""   # データ取得ページURL
+  
+# 認証設定（環境変数で上書き可能）
+auth:
+  username: ""  # ユーザー名（環境変数: SCRAPING_USERNAME）
+  password: ""  # パスワード（環境変数: SCRAPING_PASSWORD）
+  session_timeout: 3600  # セッションタイムアウト（秒）
+
+# スクレイピング設定
+scraping:
+  # リクエスト間隔（秒）
+  request_delay: 1.0
+  # リクエストタイムアウト（秒）
+  request_timeout: 30
+  # 最大リトライ回数
+  max_retries: 3
+  # 並列処理数
+  concurrent_requests: 1
+  # ブラウザ設定
+  browser:
+    headless: true
+    user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    viewport_width: 1920
+    viewport_height: 1080
+
+# データ処理設定
+data_processing:
+  # データクリーニング
+  remove_duplicates: true
+  normalize_dates: true
+  # データ検証
+  validate_data: true
+  # 欠損値の処理
+  fill_missing_values: false
+
+# エクスポート設定
+export:
+  # 出力フォーマット
+  format: "excel"  # excel, csv, json
+  # 出力ディレクトリ
+  output_dir: "output"
+  # ファイル名テンプレート
+  filename_template: "scraped_data_{date}_{person}.{ext}"
+  # エクセル設定
+  excel:
+    include_index: false
+    sheet_name: "ScrapedData"
+    
+# ログ設定
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file_enabled: true
+  file_path: "logs/scraping.log"
+  max_file_size: "10MB"
+  backup_count: 5
+
+# 期間設定のデフォルト
+default_period:
+  # デフォルトの取得期間（日数）
+  days: 30
+  # 最大取得期間（日数）
+  max_days: 365

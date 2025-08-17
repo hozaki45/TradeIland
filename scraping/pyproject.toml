@@ -1,0 +1,78 @@
+[project]
+name = "tradeiland-scraping"
+version = "0.1.0"
+description = "TradeIland ウェブスクレイピング機能"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    # Web スクレイピング
+    "playwright>=1.40.0",
+    "beautifulsoup4>=4.12.0",
+    "requests>=2.31.0",
+    "selenium>=4.15.0",
+    
+    # データ処理
+    "pandas>=2.3.1",
+    "numpy>=2.2.6",
+    "openpyxl>=3.1.5",
+    
+    # 設定管理
+    "pydantic>=2.5.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.1",
+    
+    # ログ・監視
+    "structlog>=23.2.0",
+    "rich>=13.7.0",
+    
+    # 非同期処理
+    "asyncio>=3.4.3",
+    "aiohttp>=3.9.0",
+    
+    # ユーティリティ
+    "click>=8.1.7",
+    "tqdm>=4.66.0",
+    "retry>=0.9.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.12.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.11.0",
+    "isort>=5.12.0",
+    "flake8>=6.1.0",
+    "mypy>=1.7.0",
+]
+
+[project.scripts]
+tradeiland-scraper = "scraping.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--verbose --tb=short --strict-markers"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
